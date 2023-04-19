@@ -45,5 +45,5 @@ Example with a valid input
 
 Example with an invalid entry
 <p align="center">
-<img src="Teste 2 - Boleto Vencido.png" width="1000"/>
+<img src="./complement/Teste 2 - Boleto Vencido.png" width="1000"/>
 </p>
