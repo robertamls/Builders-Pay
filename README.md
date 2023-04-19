@@ -17,16 +17,18 @@ If you prefer to use docker or an IDE, in my case I used intellij.
 Por padrão, o lombok já vem nos plugins do maven, mas caso seja necessário uma instalação aqui está o link para obter o jar.
 <p><a href="https://projectlombok.org/downloads/lombok.jar">Lombok</a></p>
 
-
 ## Commands ✅
 
-<p> First you perform a </p>
-```mvn clean```
-<p> and then a </p>
-```mvn install```
-<p> to run through the IDE, just run the BuilderPayApplication.class, but to run with docker perform </p>
-```docker build -t "builderspay"``` 
-<p> and then a </p>
-```docker-compose up -d```
+First you perform a ```mvn clean``` and then a ```mvn install``` to run through the IDE, just run the BuilderPayApplication.class, but to run with docker perform
+```docker build -t "builderspay"``` and then a ```docker-compose up -d```.
+
+## Documentation 📋
+<p><a href="http://localhost:8080/swagger-ui/index.html">Swagger</a></p>
+<p align="center">
+<img src="./imagens/swagger_web.png" width="1000"/>
+</p>
+
+
+
 
 
