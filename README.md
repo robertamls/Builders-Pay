@@ -20,11 +20,13 @@ Por padrão, o lombok já vem nos plugins do maven, mas caso seja necessário um
 
 ## Commands ✅
 
-First you perform a 
-```mvn clean"```
-and then a 
+<p> First you perform a </p>
+```mvn clean```
+<p> and then a </p>
 ```mvn install```
-to run through the IDE, just run the BuilderPayApplication.class, but to run with docker perform
+<p> to run through the IDE, just run the BuilderPayApplication.class, but to run with docker perform </p>
 ```docker build -t "builderspay"``` 
-and then a 
+<p> and then a </p>
 ```docker-compose up -d```
+
+
