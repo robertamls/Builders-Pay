@@ -14,4 +14,17 @@ If you prefer to use docker or an IDE, in my case I used intellij.
 
 + Create database "builderspay"
 
-By default, lombok already comes with the maven plugins, but if an installation is necessary, here is the a href="https://projectlombok.org/downloads/lombok.jar">link</a> to get the jar.
+Por padrão, o lombok já vem nos plugins do maven, mas caso seja necessário uma instalação aqui está o link para obter o jar.
+<p><a href="https://projectlombok.org/downloads/lombok.jar">Lombok</a></p>
+
+
+## Commands ✅
+
+First you perform a 
+```mvn clean"```
+and then a 
+```mvn install```
+to run through the IDE, just run the BuilderPayApplication.class, but to run with docker perform
+```docker build -t "builderspay"``` 
+and then a 
+```docker-compose up -d```
