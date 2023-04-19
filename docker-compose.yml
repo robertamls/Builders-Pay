@@ -16,7 +16,6 @@ services:
     container_name: builderspayapi
     build: .
     restart: always
-    network_mode: host
     ports:
       - 8080:8080
     depends_on:
