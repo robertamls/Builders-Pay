@@ -11,8 +11,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: builders123
-    volumes:
-      - /tmp/mongodb_data_container:/data/db
   buildersPay:
     image: builderspay:latest
     container_name: builderspayapi
