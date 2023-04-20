@@ -1,16 +1,11 @@
-# Use root/example as user/password credentials
-version: '3.1'
+version: '3'
 
 services:
-  mongo:
+  mongodb:
     image: mongo:latest
     container_name: mongodb
     ports:
       - 27017:27017
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: builders123
   buildersPay:
     image: builderspay:latest
     container_name: builderspayapi
@@ -18,5 +13,9 @@ services:
     restart: always
     ports:
       - 8080:8080
+    environment:
+    - SPRING_DATA_MONGODB_HOST=mongodb
+    - SPRING_DATA_MONGODB_PORT=27017
+    - SPRING_DATA_MONGODB_DATABASE=builderspay
     depends_on:
-      - mongo
+      - mongodb
