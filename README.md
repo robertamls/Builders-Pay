@@ -18,7 +18,7 @@ If you prefer to use docker or an IDE, in my case I used intellij.
 ## Commands ✅
 
 First you perform a ```mvn clean``` and then a ```mvn install``` to run through the IDE, just run the BuilderPayApplication.class, but to run with docker perform
-```docker build -t "builderspay"``` and then a ```docker-compose up -d```.
+```docker build -t "builderspay" .``` and then a ```docker-compose up -d```.
 
 ## Documentation 📋
 <p><a href="http://localhost:8080/swagger-ui/index.html">Swagger</a></p>
