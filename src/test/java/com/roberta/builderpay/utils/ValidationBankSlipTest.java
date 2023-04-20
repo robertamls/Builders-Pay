@@ -73,119 +73,121 @@ class ValidationBankSlipTest {
     //<editor-fold desc="Testes Cenário T1">
     @Test
     void isBankSlipValidT1() {
-        ValidationBankSlip.isBankSlipValid(T1_CODE);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipValidate(T1_CODE));
     }
 
     @Test
     void isBankSlipExpiredT1() {
-        ValidationBankSlip.isBankSlipExpired(T1_DUE, T1_PAYMENT);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipExpired(T1_DUE, T1_PAYMENT));
+
     }
 
     @Test
     void isBankSlipNPCT1() {
-        ValidationBankSlip.isBankSlipNPC(T1_TYPE);
+        ValidationBankSlip.bankSlipType(T1_TYPE);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipType(T1_TYPE));
     }
     //</editor-fold>
 
     //<editor-fold desc="Testes Cenário T2">
     @Test
     void isBankSlipValidT2() {
-        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.isBankSlipValid(T2_CODE));
+        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.bankSlipValidate(T2_CODE));
     }
 
     @Test
     void isBankSlipExpiredT2() {
-        ValidationBankSlip.isBankSlipExpired(T2_DUE, T2_PAYMENT);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipExpired(T2_DUE, T2_PAYMENT));
     }
 
     @Test
     void isBankSlipNPCT2() {
-        ValidationBankSlip.isBankSlipNPC(T2_TYPE);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipType(T2_TYPE));
     }
     //</editor-fold>
 
     //<editor-fold desc="Testes Cenário T3">
     @Test
     void isBankSlipValidT3() {
-        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.isBankSlipValid(T3_CODE));
+        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.bankSlipValidate(T3_CODE));
     }
 
     @Test
     void isBankSlipExpiredT3() {
-        ValidationBankSlip.isBankSlipExpired(T3_DUE, T3_PAYMENT);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipExpired(T3_DUE, T3_PAYMENT));
     }
 
     @Test
     void isBankSlipNPCT3() {
-        ValidationBankSlip.isBankSlipNPC(T3_TYPE);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipType(T3_TYPE));
     }
     //</editor-fold>
 
     //<editor-fold desc="Testes Cenário T4">
     @Test
     void isBankSlipValidT4() {
-        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.isBankSlipValid(T4_CODE));
+        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.bankSlipValidate(T4_CODE));
     }
 
     @Test
     void isBankSlipExpiredT4() {
-        ValidationBankSlip.isBankSlipExpired(T4_DUE, T4_PAYMENT);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipExpired(T4_DUE, T4_PAYMENT));
     }
 
     @Test
     void isBankSlipNPCT4() {
-        ValidationBankSlip.isBankSlipNPC(T4_TYPE);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipType(T4_TYPE));
     }
     //</editor-fold>
 
     //<editor-fold desc="Testes Cenário T5">
     @Test
     void isBankSlipValidT5() {
-        ValidationBankSlip.isBankSlipValid(T5_CODE);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipValidate(T5_CODE));
     }
 
     @Test
     void isBankSlipExpiredT5() {
-        Assertions.assertThrows(RuntimeException.class, () -> ValidationBankSlip.isBankSlipExpired(T5_DUE, T5_PAYMENT));
+        Assertions.assertThrows(RuntimeException.class, () -> ValidationBankSlip.bankSlipExpired(T5_DUE, T5_PAYMENT));
     }
 
     @Test
     void isBankSlipNPCT5() {
-        ValidationBankSlip.isBankSlipNPC(T5_TYPE);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipType(T5_TYPE));
     }
     //</editor-fold>
 
     //<editor-fold desc="Testes Cenário T6">
     @Test
     void isBankSlipValidT6() {
-        ValidationBankSlip.isBankSlipValid(T6_CODE);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipValidate(T6_CODE));
     }
 
     @Test
     void isBankSlipExpiredT6() {
-        ValidationBankSlip.isBankSlipExpired(T6_DUE, T6_PAYMENT);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipExpired(T6_DUE, T6_PAYMENT));
     }
 
     @Test
     void isBankSlipNPCT6() {
-        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.isBankSlipNPC(T6_TYPE));
+        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.bankSlipType(T6_TYPE));
     }
     //</editor-fold>
 
     //<editor-fold desc="Testes Cenário T7">
     @Test
     void isBankSlipValidT7() {
-        ValidationBankSlip.isBankSlipValid(T7_CODE);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipValidate(T7_CODE));
     }
 
     @Test
     void isBankSlipExpiredT7() {
-        ValidationBankSlip.isBankSlipExpired(T7_DUE, T7_PAYMENT);
+        Assertions.assertDoesNotThrow(() -> ValidationBankSlip.bankSlipExpired(T7_DUE, T7_PAYMENT));
     }
 
     @Test
     void isBankSlipNPCT7() {
-        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.isBankSlipNPC(T7_TYPE));
+        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.bankSlipType(T7_TYPE));
 
     }
     //</editor-fold>
@@ -193,17 +195,17 @@ class ValidationBankSlipTest {
     //<editor-fold desc="Testes Cenário T8">
     @Test
     void isBankSlipValidT8() {
-        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.isBankSlipValid(T8_CODE));
+        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.bankSlipValidate(T8_CODE));
     }
 
     @Test
     void isBankSlipExpiredT8() {
-        Assertions.assertThrows(RuntimeException.class, () -> ValidationBankSlip.isBankSlipExpired(T8_DUE, T8_PAYMENT));
+        Assertions.assertThrows(RuntimeException.class, () -> ValidationBankSlip.bankSlipExpired(T8_DUE, T8_PAYMENT));
     }
 
     @Test
     void isBankSlipNPCT8() {
-        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.isBankSlipNPC(T8_TYPE));
+        Assertions.assertThrows(InvalidException.class, () -> ValidationBankSlip.bankSlipType(T8_TYPE));
     }
     //</editor-fold>
 }

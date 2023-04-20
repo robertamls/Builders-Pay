@@ -14,7 +14,7 @@ public class ValidationBankSlip {
      * @param code código de barras que será passado no payload da request
      * @throws InvalidException
      */
-    public static void isBankSlipValid(String code) {
+    public static void bankSlipValidate(String code) {
         if (!code.matches(regex)) {
             throw new InvalidException("Apenas os 44 números do boleto são aceitos.");
         }
@@ -29,7 +29,7 @@ public class ValidationBankSlip {
      * @throws InvalidException
      * @throws RuntimeException
      */
-    public static long isBankSlipExpired(String dueDate, String paymentDate) {
+    public static long bankSlipExpired(String dueDate, String paymentDate) {
         try {
             DateTime due = new DateTime(DateTime.parse(dueDate));
             DateTime payment = new DateTime(DateTime.parse(paymentDate));
@@ -49,11 +49,9 @@ public class ValidationBankSlip {
      *
      * @param type tipo de boleto obtido pelo bankSlipResponse
      */
-    public static void isBankSlipNPC(String type) {
+    public static void bankSlipType(String type) {
         if (!type.equals("NPC")) {
             throw new InvalidException("O boleto não é do tipo NPC.");
         }
     }
-
-
 }

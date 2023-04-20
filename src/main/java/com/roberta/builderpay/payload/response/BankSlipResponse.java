@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class BankSlipResponse {
-    public String code;
-    public String due_date;
-    public double amount;
-    public String recipient_name;
-    public String recipient_document;
-    public String type;
+    private String code;
+    private String due_date;
+    private double amount;
+    private String recipient_name;
+    private String recipient_document;
+    private String type;
 }

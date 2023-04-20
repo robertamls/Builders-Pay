@@ -8,12 +8,13 @@ import com.roberta.builderpay.repository.BankSlipRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 import static com.roberta.builderpay.utils.FormatDouble.formatDoubles;
 import static com.roberta.builderpay.utils.ValidationBankSlip.*;
@@ -42,8 +43,14 @@ public class BankSlipService {
      * Pega o histórico de calculos no banco
      * @return dados salvos
      */
-    public List<BankSlip> findAll(){
-        return bankSlipRepository.findAll();
+    public Page<BankSlip> findAll(int page, int size){
+        Sort sort = Sort.by("due_date").ascending();
+        PageRequest pageRequest = PageRequest.of(
+                page,
+                size,
+                sort);
+
+        return bankSlipRepository.findAll(pageRequest);
     }
 
     /**
@@ -55,7 +62,7 @@ public class BankSlipService {
      */
     public BankSlipResponse searchBankSlip(BankSlipRequest bankSlipRequest, String token) {
 
-        isBankSlipValid(bankSlipRequest.code);
+        bankSlipValidate(bankSlipRequest.getCode());
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -73,21 +80,21 @@ public class BankSlipService {
      */
     public BankSlipDto generateRates(BankSlipResponse bankSlipResponse, String payment_date) {
 
-        isBankSlipNPC(bankSlipResponse.type);
+        bankSlipType(bankSlipResponse.getType());
 
-        long expireDays = isBankSlipExpired(bankSlipResponse.due_date, payment_date);
+        long expireDays = bankSlipExpired(bankSlipResponse.getDue_date(), payment_date);
 
-        double interestAmount = InterestCalculator(expireDays, bankSlipResponse.amount);
+        double interestAmount = interestCalculator(expireDays, bankSlipResponse.getAmount());
 
-        double finesAmount = FinesCalculator(bankSlipResponse.amount);
+        double finesAmount = finesCalculator(bankSlipResponse.getAmount());
 
         // Montante atualizado
-        double amountUpdated = bankSlipResponse.amount + interestAmount + finesAmount;
+        double amountUpdated = bankSlipResponse.getAmount() + interestAmount + finesAmount;
 
         BankSlip bankSlip = new BankSlip();
-        bankSlip.setOriginal_amount(bankSlipResponse.amount);
+        bankSlip.setOriginal_amount(bankSlipResponse.getAmount());
         bankSlip.setAmount(amountUpdated);
-        bankSlip.setDue_date(bankSlipResponse.due_date);
+        bankSlip.setDue_date(bankSlipResponse.getDue_date());
         bankSlip.setPayment_date(payment_date);
         bankSlip.setInterest_amount_calculated(interestAmount);
         bankSlip.setFine_amount_calculated(finesAmount);
@@ -104,7 +111,7 @@ public class BankSlipService {
      * @param amount     montante obtido por bankSlipResponse
      * @return total de juros
      */
-    public double InterestCalculator(long expireDays, double amount) {
+    public double interestCalculator(long expireDays, double amount) {
         double interest = 0.0033;
         return formatDoubles(amount * interest * expireDays);
     }
@@ -115,7 +122,7 @@ public class BankSlipService {
      * @param amount montante obtido por bankSlipResponse
      * @return retorna a multa
      */
-    public double FinesCalculator(double amount) {
+    public double finesCalculator(double amount) {
         return formatDoubles(amount * 0.02);
     }
 }

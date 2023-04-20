@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class CalculateRequest {
-    public String bar_code;
-    public String payment_date;
+    private String bar_code;
+    private String payment_date;
 }

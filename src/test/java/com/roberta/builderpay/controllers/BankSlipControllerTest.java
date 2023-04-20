@@ -9,18 +9,31 @@ import com.roberta.builderpay.services.BankSlipService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
-@Service
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 class BankSlipControllerTest {
 
     @InjectMocks
     private BankSlipController bankSlipController;
+    @Autowired
+    private MockMvc mvc;
 
     @Mock
     private AuthService authService;
@@ -93,8 +106,9 @@ class BankSlipControllerTest {
     }
 
     @Test
-    void allCalculations(){
-        Assertions.assertDoesNotThrow(() -> bankSlipController.allCalculations());
+    void allCalculations() throws Exception {
+        mvc.perform(get("/api/all-calculations?page=1&size=2").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
 
     }
 }

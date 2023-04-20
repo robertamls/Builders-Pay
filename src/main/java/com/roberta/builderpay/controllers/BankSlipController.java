@@ -8,11 +8,10 @@ import com.roberta.builderpay.payload.response.BankSlipResponse;
 import com.roberta.builderpay.services.AuthService;
 import com.roberta.builderpay.services.BankSlipService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -47,7 +46,7 @@ public class BankSlipController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        BankSlipDto dto = bankSlipService.generateRates(response, calculateRequest.payment_date);
+        BankSlipDto dto = bankSlipService.generateRates(response, calculateRequest.getPayment_date());
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
@@ -58,9 +57,17 @@ public class BankSlipController {
      * @throws Exception
      */
     @GetMapping("/all-calculations")
-    public ResponseEntity<?> allCalculations() {
+    public ResponseEntity<?> allCalculations(
+            @RequestParam(
+                value = "page",
+                required = false,
+                defaultValue = "0") int page,
+            @RequestParam(
+                    value = "size",
+                    required = false,
+                    defaultValue = "10") int size) {
         try {
-            List<BankSlip> bankSlipList = bankSlipService.findAll();
+            Page<BankSlip> bankSlipList = bankSlipService.findAll(page, size);
             return new ResponseEntity<>(bankSlipList, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
